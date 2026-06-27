@@ -12,14 +12,12 @@ new class extends Component
     }
 }; ?>
 
-<aside class="bg-blue-900 text-white w-full h-full flex flex-col shadow-xl overflow-y-auto">
-    <!-- Logo Section -->
+<aside class="bg-blue-900 text-white w-64 flex-shrink-0 h-full flex flex-col shadow-xl overflow-y-auto">
     <div class="h-16 md:h-20 flex items-center justify-between md:justify-center border-b border-blue-800 px-4 flex-shrink-0 relative">
         <a href="{{ route('dashboard') }}" wire:navigate class="text-xl md:text-2xl font-bold tracking-wider">
             Best Assets
         </a>
         
-        <!-- Close button for mobile -->
         <button @click="sidebarOpen = false" class="md:hidden text-blue-200 hover:text-white p-2 -mr-2">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -27,7 +25,6 @@ new class extends Component
         </button>
     </div>
 
-    <!-- User Profile -->
     <div class="p-3 md:p-6 border-b border-blue-800 bg-blue-950/50 flex-shrink-0">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center font-bold text-white text-sm flex-shrink-0">
@@ -40,9 +37,7 @@ new class extends Component
         </div>
     </div>
 
-    <!-- Navigation Menu -->
     <nav class="flex-1 overflow-y-auto py-4 space-y-1 px-2">
-        <!-- Dashboard Link -->
         <a href="{{ route('dashboard') }}" wire:navigate 
             class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition {{ request()->routeIs('dashboard') ? 'bg-blue-700 text-white font-medium' : 'text-blue-100 hover:bg-blue-800' }}">
             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,7 +47,6 @@ new class extends Component
         </a>
 
         @if(auth()->user()->role->value === 'admin')
-            <!-- Master Data Section -->
             <div class="pt-4 pb-2 px-4 text-xs font-bold text-blue-300 uppercase tracking-wider">Master Data</div>
 
             <a href="{{ route('categories.index') }}" wire:navigate 
@@ -87,7 +81,6 @@ new class extends Component
                 <span class="truncate">Pengguna</span>
             </a>
 
-            <!-- Inventory Section -->
             <div class="pt-4 pb-2 px-4 text-xs font-bold text-blue-300 uppercase tracking-wider">Inventory</div>
 
             <a href="{{ route('stock-in.index') }}" wire:navigate 
@@ -116,7 +109,6 @@ new class extends Component
         @endif
 
         @if(auth()->user()->role->value === 'teknisi')
-            <!-- Operational Section -->
             <div class="pt-4 pb-2 px-4 text-xs font-bold text-blue-300 uppercase tracking-wider">Operasional</div>
 
             <a href="{{ route('request-stock.index') }}" wire:navigate 
@@ -129,7 +121,6 @@ new class extends Component
         @endif
     </nav>
 
-    <!-- Footer Menu -->
     <div class="border-t border-blue-800 p-2 space-y-1 flex-shrink-0 bg-blue-950/30">
         <a href="{{ route('profile') }}" wire:navigate 
             class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-blue-100 hover:bg-blue-800 transition">

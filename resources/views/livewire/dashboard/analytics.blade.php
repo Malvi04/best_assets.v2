@@ -99,7 +99,7 @@ new class extends Component {
             </div>
         </div>
 
-        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div class="bg-gradient-to-br from-orange-300 to-orange-500 rounded-xl shadow-lg p-6 text-white">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-emerald-100 text-sm font-medium uppercase tracking-wider">Total Obat / Chemical</p>
