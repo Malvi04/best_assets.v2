@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RequestStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('request_batches', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Teknisi yang request
-            $table->string('status')->default(\App\Enums\RequestStatus::Pending->value);
+            $table->string('status')->default(RequestStatus::Pending->value);
             $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); // Admin yang approve
             $table->text('notes')->nullable();
             $table->timestamps();

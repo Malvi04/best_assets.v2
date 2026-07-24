@@ -2,13 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\StockRequest;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\StockRequest;
 
 class NewStockRequestNotification extends Mailable
 {
@@ -30,7 +30,7 @@ class NewStockRequestNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Stock Request Notification - ' . $this->stockRequest->item->name,
+            subject: 'New Stock Request Notification - '.$this->stockRequest->item->name,
         );
     }
 
@@ -47,7 +47,7 @@ class NewStockRequestNotification extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {

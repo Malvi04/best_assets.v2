@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Category;
-use App\Models\Tool;
-use App\Models\Medicine;
 use App\Enums\Role;
+use App\Models\Category;
+use App\Models\Medicine;
+use App\Models\Tool;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -39,12 +39,12 @@ class DatabaseSeeder extends Seeder
         // 2. Create Categories
         $catTools = Category::create([
             'name' => 'Peralatan Lapangan',
-            'description' => 'Alat berat dan ringan untuk pekerjaan'
+            'description' => 'Alat berat dan ringan untuk pekerjaan',
         ]);
 
         $catMeds = Category::create([
             'name' => 'Bahan Kimia',
-            'description' => 'Obat-obatan dan bahan kimia'
+            'description' => 'Obat-obatan dan bahan kimia',
         ]);
 
         // 3. Create Tools
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             'stock' => 15,
             'unit' => 'Unit',
             'condition' => 'Baik',
-            'description' => 'Alat penyemprot manual'
+            'description' => 'Alat penyemprot manual',
         ]);
         Tool::create([
             'category_id' => $catTools->id,
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             'stock' => 5,
             'unit' => 'Unit',
             'condition' => 'Baik',
-            'description' => 'Mesin fogging nyamuk'
+            'description' => 'Mesin fogging nyamuk',
         ]);
 
         // 4. Create Medicines
@@ -71,14 +71,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Racun Tikus Blok',
             'stock' => 50,
             'unit' => 'Pack',
-            'description' => 'Umpan tikus'
+            'description' => 'Umpan tikus',
         ]);
         Medicine::create([
             'category_id' => $catMeds->id,
             'name' => 'Cairan Pembunuh Nyamuk',
             'stock' => 20,
             'unit' => 'Liter',
-            'description' => 'Obat fogging'
+            'description' => 'Obat fogging',
         ]);
     }
 }
