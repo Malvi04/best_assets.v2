@@ -16,6 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::view('inventory/stock-out', 'inventory.stock-out')->name('stock-out.index');
         Route::view('approvals', 'approvals.index')->name('approvals.index');
         Route::view('admin/users', 'admin.users')->name('admin.users.index');
+        Route::view('admin/activities', 'admin.activities')->name('admin.activities.index');
     });
 
     // Teknisi

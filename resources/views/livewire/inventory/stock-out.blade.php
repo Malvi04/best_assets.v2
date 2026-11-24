@@ -1,12 +1,17 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\Tool;
+use App\Models\Medicine;
 use App\Models\Transaction;
 use App\Enums\TransactionType;
 use Illuminate\Support\Carbon;
 
 new class extends Component {
-    
+    public $startDate = '';
+    public $endDate = '';
+    public $search = '';
+
     public function with(): array
     {
         return [
@@ -18,6 +23,17 @@ new class extends Component {
     {
         $transactions = Transaction::with(['asset', 'user'])
             ->where('type', TransactionType::Out)
+            ->when($this->startDate, function ($query) {
+                $query->whereDate('created_at', '>=', $this->startDate);
+            })
+            ->when($this->endDate, function ($query) {
+                $query->whereDate('created_at', '<=', $this->endDate);
+            })
+            ->when($this->search, function ($query) {
+                $query->whereHasMorph('asset', [Tool::class, Medicine::class], function ($q) {
+                    $q->where('name', 'like', '%' . $this->search . '%');
+                });
+            })
             ->orderBy('created_at', 'asc')
             ->get();
 
@@ -86,6 +102,21 @@ new class extends Component {
             </svg>
             Export ke Excel
         </button>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4 mb-6 items-end">
+        <div>
+            <x-input-label for="startDateOut" value="Dari Tanggal" />
+            <x-text-input wire:model.live="startDate" id="startDateOut" type="date" class="mt-1 block w-full text-sm" />
+        </div>
+        <div>
+            <x-input-label for="endDateOut" value="Sampai Tanggal" />
+            <x-text-input wire:model.live="endDate" id="endDateOut" type="date" class="mt-1 block w-full text-sm" />
+        </div>
+        <div>
+            <x-input-label for="searchOut" value="Cari Nama Barang" />
+            <x-text-input wire:model.live.debounce.300ms="search" id="searchOut" type="text" class="mt-1 block w-full text-sm" placeholder="Ketik kata kunci..." />
+        </div>
     </div>
 
     <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">

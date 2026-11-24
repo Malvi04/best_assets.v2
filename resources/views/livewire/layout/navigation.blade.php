@@ -81,6 +81,14 @@ new class extends Component
                 <span class="truncate">Pengguna</span>
             </a>
 
+            <a href="{{ route('admin.activities.index') }}" wire:navigate 
+                class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition {{ request()->routeIs('admin.activities.*') ? 'bg-blue-700 text-white font-medium' : 'text-blue-100 hover:bg-blue-800' }}">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <span class="truncate">Audit Log</span>
+            </a>
+
             <div class="pt-4 pb-2 px-4 text-xs font-bold text-blue-300 uppercase tracking-wider">Inventory</div>
 
             <a href="{{ route('stock-in.index') }}" wire:navigate 
